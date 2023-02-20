@@ -2,19 +2,16 @@ package com.dpc.carrace.vehicles;
 
 import com.dpc.carrace.Race;
 
-import java.util.Random;
-
 public abstract class Vehicle {
-    Random random = new Random();
     String name;
     int normalSpeed;
     int actualSpeed;
     int distanceTravelled;
 
 
-    protected Vehicle() {
+    protected Vehicle(int normalSpeed) {
         this.name = setName();
-        this.normalSpeed = setNormalSpeed();
+        this.normalSpeed = normalSpeed;
         this.distanceTravelled = 0;
     }
 
@@ -23,8 +20,6 @@ public abstract class Vehicle {
     }
 
     public abstract String setName();
-
-    public abstract int setNormalSpeed();
 
     public abstract void prepareForLap(Race race);
 

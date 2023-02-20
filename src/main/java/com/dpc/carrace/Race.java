@@ -8,16 +8,22 @@ import java.util.List;
 
 public class Race {
     private static final List<Vehicle> vehicles = new LinkedList<>();
+    private boolean brokenTruck;
 
     public Race() {
         simulateRace();
     }
 
-    public boolean isYellowFlagActive() {
+    private boolean getBrokenTruckStatus() {
         return
                 vehicles.stream()
                         .filter(vehicle -> vehicle instanceof Truck)
-                        .map(truck -> ((Truck) truck).isBrokenDown()).isParallel();
+                        .map(truck -> ((Truck) truck))
+                        .anyMatch(Truck::isBrokenDown);
+    }
+
+    public boolean isYellowFlagActive() {
+        return brokenTruck;
     }
 
     public void registerRacer(Vehicle racer) {
@@ -25,13 +31,14 @@ public class Race {
     }
 
     public void simulateRace() {
-        int LENGTH_OF_RACE = 50;
-        for (int i = 0; i < LENGTH_OF_RACE; i++) {
+        int NUM_OF_LAPS = 50;
+        for (int i = 0; i < NUM_OF_LAPS; i++) {
             for (Vehicle vehicle : vehicles) {
                 vehicle.prepareForLap(this);
                 vehicle.moveForAnHour();
             }
-            Weather.isRaining();
+            Weather.randomize();
+            brokenTruck = getBrokenTruckStatus();
         }
     }
 

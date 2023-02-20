@@ -1,15 +1,21 @@
 package com.dpc.carrace;
 
+import com.dpc.carrace.util.RandomHelper;
+
 public class Weather {
     private static final int CHANCE_TO_RAIN = 30;
-    private static boolean isRaining;
 
-    public static int advance() {
-        return (int) (Math.random() * 100);
+    private static boolean isRaining = false;
+
+    public Weather() {
+        randomize();
     }
 
     public static boolean isRaining() {
-        int randomValue = advance();
-        return randomValue >= CHANCE_TO_RAIN;
+        return isRaining;
+    }
+
+    public static void randomize() {
+        isRaining = RandomHelper.randomizeWithChance(CHANCE_TO_RAIN);
     }
 }
