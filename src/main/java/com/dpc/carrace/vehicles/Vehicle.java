@@ -23,10 +23,6 @@ public abstract class Vehicle {
 
     public abstract void prepareForLap(Race race);
 
-    public void setActualSpeed(int actualSpeed) {
-        this.actualSpeed = actualSpeed;
-    }
-
     @Override
     public String toString() {
         String sb = "{" +

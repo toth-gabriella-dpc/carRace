@@ -34,4 +34,6 @@ public class Car extends Vehicle {
         if (race.isYellowFlagActive()) actualSpeed = REDUCED_SPEED;
         else actualSpeed = normalSpeed;
     }
+
+
 }
